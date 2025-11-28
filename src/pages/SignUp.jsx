@@ -1,9 +1,12 @@
 import axios from 'axios';
 import React, { use, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 function SignUp() {
 
     const [user, setUser] = useState({ username: "", email: "", password1: "", password2: "" })
+
+    const navigate= useNavigate()
 
     function handleSubmit(event){
         event.preventDefault()
@@ -15,7 +18,12 @@ function SignUp() {
 
    async function createUserApi(){
         let response= await axios.post("http://127.0.0.1:8000/api/auth/register/",user)
-        console.log(response.data);
+        
+        if(response.status>=200 && response.status<300){
+            
+            navigate("/login")
+
+        }
         
     }
 
