@@ -1,9 +1,12 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 function SignIn() {
 
     const [user,setUser]=useState({username:"",password:""})
+
+    const navigate=useNavigate()
 
     function handleSubmit(event){
         event.preventDefault()
@@ -20,6 +23,7 @@ function SignIn() {
 
             localStorage.setItem("token","Token "+token)
             // getItem(key)
+            navigate("/issues-add")
 
         }
         
